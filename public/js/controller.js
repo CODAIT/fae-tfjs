@@ -10,7 +10,6 @@ var picoConfig = {
 }
 
 var update_memory;
-// var stats = new Stats();
 var initialized = false;
 var ageEstimatorPromise;
 var ageResults = new Array();
@@ -57,10 +56,6 @@ function start() {
 
     var mycamvas = new camvas(window.ctx, processFrame);
     initialized = true;
-    // stats.showPanel(0);
-    // stats.dom.style.left = '10px';
-    // stats.dom.style.top = '200px';
-    document.body.appendChild(stats.dom);
 }
 
 /**
