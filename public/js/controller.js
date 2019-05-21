@@ -37,7 +37,7 @@ async function setup() {
 
     // Loads heavy face detection algorithm from faceapi.js
     // const ssdMobileNet = await faceapi.loadSsdMobilenetv1Model('public/model/ssd_mobilenet');
-    const tinyFace = await faceapi.loadTinyFaceDetectorModel('/public/model/tiny_face');
+    const tinyFace = await faceapi.loadTinyFaceDetectorModel('public/model/tiny_face');
 }
 
 /**
@@ -57,9 +57,9 @@ function start() {
 
     var mycamvas = new camvas(window.ctx, processFrame);
     initialized = true;
-    stats.showPanel(0);
-    stats.dom.style.left = '10px';
-    stats.dom.style.top = '200px';
+    // stats.showPanel(0);
+    // stats.dom.style.left = '10px';
+    // stats.dom.style.top = '200px';
     document.body.appendChild(stats.dom);
 }
 
