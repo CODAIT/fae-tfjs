@@ -86,7 +86,7 @@ function processAgeResults(faces, ageResult) {
         window.ctx.strokeStyle = 'red'
         window.ctx.strokeRect(faces[i][0], faces[i][1], faces[i][2], faces[i][3]);
         window.ctx.font = '25px serif';
-        window.ctx.fillStyle = 'yellow';
+        window.ctx.fillStyle = 'lawngreen';
         window.ctx.fillText(ageResult.get(i, 0), faces[i][0], faces[i][1]);
     }
 }
