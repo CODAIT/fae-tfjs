@@ -15,4 +15,6 @@ const app = http.createServer( (req, res) => {
     res.end(fs.readFileSync(__dirname + req.url));
 });
 
-app.listen(port);
+app.listen(port, function(){
+    console.log("Site running on localhost:3000")
+});
