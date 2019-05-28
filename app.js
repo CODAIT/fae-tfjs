@@ -1,17 +1,18 @@
-const express = require("express");
-const app = express();
+const http = require('http');
+const fs = require('fs');
 
-app.set('views', __dirname + '/views');
-app.use("/public", express.static(__dirname + '/public'));
-app.use("/model", express.static(__dirname + '/model'));
+const port = 3000;
+const app = http.createServer( (req, res) => {
+    res.writeHead(200);
 
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'ejs');
+    if (req.url === '/favicon.ico') {
+        res.writeHead(200, {'Content-Type': 'image/x-icon'} );
+        res.end();
+        return;
+    }
 
-app.get('/', function(req, res) {
-    res.render('index.html');
+    if (req.url === '/') req.url = '/index.html' 
+    res.end(fs.readFileSync(__dirname + req.url));
 });
 
-app.listen(3000, "localhost", function(){
-    console.log("Server running at port 3000");
-})
+app.listen(port);
