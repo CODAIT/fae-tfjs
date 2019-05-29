@@ -11,3 +11,5 @@
 ```
   $ node app.js
 ```
+
+3. In your browser, visit [localhost:3000](http://localhost:3000).
