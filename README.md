@@ -39,7 +39,7 @@ If you have [Docker](https://www.docker.com/products/docker-desktop) installed:
    $ cd fae-tfjs
    ```
 
-2. [Build the Docker](https://docs.docker.com/engine/reference/commandline/build/)
+2. [Build the Docker image](https://docs.docker.com/engine/reference/commandline/build/)
 
    ```
    $ docker build -t fae-tfjs .
