@@ -39,16 +39,25 @@ If you have [Docker](https://www.docker.com/products/docker-desktop) installed:
    $ cd fae-tfjs
    ```
 
-2. Build the Docker image
+2. [Build the Docker](https://docs.docker.com/engine/reference/commandline/build/)
 
    ```
    $ docker build -t fae-tfjs .
    ```
 
-3. Run the Docker image
+3. [Run the Docker container](https://docs.docker.com/engine/reference/commandline/run/)
 
    ```
    $ docker run -it -p 3000:3000 fae-tfjs
    ``` 
 
-4. In your browser, visit [localhost:3000](http://localhost:3000).
+4. In your browser, open [localhost:3000](http://localhost:3000) and enable the web camera
+
+5. [Obtain the container id](https://docs.docker.com/engine/reference/commandline/ps/) and [stop the Docker container](https://docs.docker.com/engine/reference/commandline/stop/)
+
+   ```
+   $ docker ps 
+    CONTAINER ID        IMAGE               COMMAND                  ...
+    3...6              fae-tfjs             ...
+   $ docker stop 3...6  
+   ```
