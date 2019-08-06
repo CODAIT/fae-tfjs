@@ -90,8 +90,11 @@ async function runPrediction(video, detectResult) {
         let bbxheight = detectResult[i][3];
 
         let cropImage = document.createElement('canvas')
+        // let cropImage = document.getElementById('cropcanvas')
+        cropImage.width = bbxwidth
+        cropImage.height = bbxheight
         let cropCtx = cropImage.getContext('2d')
-        cropCtx.drawImage(video, x, y, bbxwidth, bbxheight)
+        cropCtx.drawImage(video, x, y, bbxwidth, bbxheight, 0, 0, bbxwidth, bbxheight)
         input.push(cropImage)
     }
 
