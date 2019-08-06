@@ -90,7 +90,6 @@ async function runPrediction(video, detectResult) {
         let bbxheight = detectResult[i][3];
 
         let cropImage = document.createElement('canvas')
-        // let cropImage = document.getElementById('cropcanvas')
         cropImage.width = bbxwidth
         cropImage.height = bbxheight
         let cropCtx = cropImage.getContext('2d')
@@ -121,7 +120,7 @@ function processAgeResults(faces, ageResult) {
         window.ctx.strokeRect(faces[i][0], faces[i][1], faces[i][2], faces[i][3]);
         window.ctx.font = '25px serif';
         window.ctx.fillStyle = 'lawngreen';
-        window.ctx.fillText(ageResult[i], faces[i][0], faces[i][1]);
+        window.ctx.fillText(Math.floor(ageResult[i]), faces[i][0], faces[i][1]);
     }
 }
 
