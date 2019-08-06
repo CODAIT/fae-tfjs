@@ -111,8 +111,7 @@ async function runPrediction(video, detectResult) {
  * @param {Array[Number]} ageResult             Array containing ages
  */
 function processAgeResults(faces, ageResult) {
-    for (i = 0; (i < faces.length && ageResult); ++i) {
-        console.log(ageResult);
+    for (i = 0; i < faces.length; i++) {
         let x = faces[i][0];
         let y = faces[i][1]
         window.ctx.lineWidth = 3
