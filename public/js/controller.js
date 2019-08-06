@@ -76,10 +76,9 @@ function rgba_to_grayscale(rgba, nrows, ncols) {
  * Runs the model on a single frame.
  * @param {Object} video                    Video object.
  * @param {Array} detectResult              Array containing results from face detection model.
- * @return {Int32Array}                     Returns the results from the model in an array.
+ * @return {Promise}                        Returns a promise that returns a either an empty array or array of age predictions.
  */
 async function runPrediction(video, detectResult) {
-    let ppl_count = 0;
     let input = new Array()
 
     for (let i = 0; i < detectResult.length; i++) {
@@ -101,7 +100,7 @@ async function runPrediction(video, detectResult) {
     if (input.length > 0) {
         return ageEstimator.predict(input)
     } else {
-        return Promise.resolve()
+        return Promise.resolve([])
     }
 }
 
