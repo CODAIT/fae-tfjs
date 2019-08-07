@@ -20,7 +20,6 @@ setup();
 
 // Run setup
 async function setup() {
-    loadModel();
     let button = document.getElementById("webcamButton");
     button.addEventListener("click", start)
 
@@ -74,12 +73,44 @@ function rgba_to_grayscale(rgba, nrows, ncols) {
 }
 
 /**
+ * Runs the model on a single frame.
+ * @param {Object} video                    Video object.
+ * @param {Array} detectResult              Array containing results from face detection model.
+ * @return {Promise}                        Returns a promise that returns a either an empty array or array of age predictions.
+ */
+async function runPrediction(video, detectResult) {
+    let input = new Array()
+
+    for (let i = 0; i < detectResult.length; i++) {
+        ppl_count += 1
+        let x = detectResult[i][0];
+        let y = detectResult[i][1];
+        let bbxwidth = detectResult[i][2];
+        let bbxheight = detectResult[i][3];
+
+        let cropImage = document.createElement('canvas')
+        cropImage.width = bbxwidth
+        cropImage.height = bbxheight
+        let cropCtx = cropImage.getContext('2d')
+        cropCtx.drawImage(video, x, y, bbxwidth, bbxheight, 0, 0, bbxwidth, bbxheight)
+        input.push(cropImage)
+    }
+
+    // Inference
+    if (input.length > 0) {
+        return ageEstimator.predict(input)
+    } else {
+        return Promise.resolve([])
+    }
+}
+
+/**
  * Takes in an array of bounding boxes and ages and updates the frame with the results.
  * @param {Array[Array[Number]]} faces          Array containing an array of numbers in the format [x, y, width, height]
  * @param {Array[Number]} ageResult             Array containing ages
  */
 function processAgeResults(faces, ageResult) {
-    for (i = 0; i < faces.length; ++i) {
+    for (i = 0; i < faces.length; i++) {
         let x = faces[i][0];
         let y = faces[i][1]
         window.ctx.lineWidth = 3
@@ -87,7 +118,7 @@ function processAgeResults(faces, ageResult) {
         window.ctx.strokeRect(faces[i][0], faces[i][1], faces[i][2], faces[i][3]);
         window.ctx.font = '25px serif';
         window.ctx.fillStyle = 'lawngreen';
-        window.ctx.fillText(ageResult.get(i, 0), faces[i][0], faces[i][1]);
+        window.ctx.fillText(Math.floor(ageResult[i]), faces[i][0], faces[i][1]);
     }
 }
 
