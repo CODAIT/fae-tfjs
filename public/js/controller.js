@@ -82,7 +82,6 @@ async function runPrediction(video, detectResult) {
     let input = new Array()
 
     for (let i = 0; i < detectResult.length; i++) {
-        ppl_count += 1
         let x = detectResult[i][0];
         let y = detectResult[i][1];
         let bbxwidth = detectResult[i][2];
